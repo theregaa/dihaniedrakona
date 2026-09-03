@@ -79,7 +79,7 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 @media(max-width:390px){.bottom-nav{grid-template-columns:repeat(4,1fr)}.nav-btn{font-size:9px;padding:8px 2px}.nav-btn svg{width:17px;height:17px}}
 
 /* v26: fixed admin workspace + clear cash section */
-.admin-panel{height:100dvh;max-height:100dvh;overflow:hidden;padding:12px 12px 16px;display:flex;flex-direction:column;box-sizing:border-box}
+.admin-panel{height:100dvh;max-height:100dvh;overflow:hidden;padding:calc(12px + env(safe-area-inset-top)) 12px 16px;display:flex;flex-direction:column;box-sizing:border-box}
 .admin-head{width:min(760px,100%);flex:0 0 auto;padding-bottom:10px}
 .admin-head h2{font-size:20px;margin:3px 0}
 .admin-head p{font-size:11px}
@@ -89,10 +89,10 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .admin-tab-content>.admin-form,.admin-tab-content>.admin-list,.admin-tab-content>.stats-panel,.admin-tab-content>.shift-panel,.admin-tab-content>.cash-list{max-width:760px}
 .admin-section-title{max-width:760px;margin:0 auto 8px;padding:10px 12px;border:1px solid #302515;background:#15120e;border-radius:14px}
 .admin-section-title b{display:block;font-size:13px}.admin-section-title small{display:block;color:#888;font-size:10px;line-height:1.4;margin-top:3px}
-@media(max-width:430px){.admin-panel{padding:10px 10px 12px}.admin-head h2{font-size:18px}.admin-head p{font-size:10px}.admin-tabs{margin:7px auto}.admin-tabs button{min-height:36px;font-size:10px}.admin-tab-content{padding-bottom:8px}}
+@media(max-width:430px){.admin-panel{padding:calc(10px + env(safe-area-inset-top)) 10px 12px}.admin-head h2{font-size:18px}.admin-head p{font-size:10px}.admin-tabs{margin:7px auto}.admin-tabs button{min-height:36px;font-size:10px}.admin-tab-content{padding-bottom:8px}}
 
 /* v26: fixed admin workspace + clear cash section */
-.admin-panel{height:100dvh;max-height:100dvh;overflow:hidden;padding:12px 12px 16px;display:flex;flex-direction:column;box-sizing:border-box}
+.admin-panel{height:100dvh;max-height:100dvh;overflow:hidden;padding:calc(12px + env(safe-area-inset-top)) 12px 16px;display:flex;flex-direction:column;box-sizing:border-box}
 .admin-head{width:min(760px,100%);flex:0 0 auto;padding-bottom:10px}
 .admin-head h2{font-size:20px;margin:3px 0}
 .admin-head p{font-size:11px}
@@ -102,7 +102,7 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .admin-tab-content>.admin-form,.admin-tab-content>.admin-list,.admin-tab-content>.stats-panel,.admin-tab-content>.shift-panel,.admin-tab-content>.cash-list{max-width:760px}
 .admin-section-title{max-width:760px;margin:0 auto 8px;padding:10px 12px;border:1px solid #302515;background:#15120e;border-radius:14px}
 .admin-section-title b{display:block;font-size:13px}.admin-section-title small{display:block;color:#888;font-size:10px;line-height:1.4;margin-top:3px}
-@media(max-width:430px){.admin-panel{padding:10px 10px 12px}.admin-head h2{font-size:18px}.admin-head p{font-size:10px}.admin-tabs{margin:7px auto}.admin-tabs button{min-height:36px;font-size:10px}.admin-tab-content{padding-bottom:8px}}
+@media(max-width:430px){.admin-panel{padding:calc(10px + env(safe-area-inset-top)) 10px 12px}.admin-head h2{font-size:18px}.admin-head p{font-size:10px}.admin-tabs{margin:7px auto}.admin-tabs button{min-height:36px;font-size:10px}.admin-tab-content{padding-bottom:8px}}
 .receipt-items{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}
 .receipt-item{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13px}
 .receipt-item span{min-width:0}.receipt-item small{display:block;opacity:.58;margin-top:2px;font-size:11px}.receipt-item strong{white-space:nowrap}
@@ -153,7 +153,7 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .app-shell{background:
   radial-gradient(circle at 50% 0,rgba(255,100,0,.10),transparent 20%),
   linear-gradient(180deg,#050707 0%,#080a09 52%,#050606 100%)}
-.app-header{background:rgba(5,7,7,.94);border-bottom:1px solid #202422;padding:13px 14px 10px}
+.app-header{background:rgba(5,7,7,.94);border-bottom:1px solid #202422;padding:calc(13px + env(safe-area-inset-top)) 14px 10px}
 .app-header .brand{font-size:8px;letter-spacing:.18em;color:#d58a2a}
 .app-header h1{font-size:19px;letter-spacing:-.01em;margin:3px 0 0}
 .app-header .icon-btn{width:36px;height:36px;border-radius:9px;background:#0c0f0f;border-color:#252a29}
