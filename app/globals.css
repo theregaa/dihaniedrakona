@@ -230,3 +230,66 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .order-edit-modal .modal-head{margin-bottom:10px}.edit-hint{padding:11px 12px;border-radius:12px;background:rgba(255,122,0,.08);border:1px solid rgba(255,122,0,.18);color:#cfcfcf;font-size:12px;margin:10px 0 14px}.edit-order-items{display:grid;gap:8px}.edit-order-line{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}.edit-order-line>div:first-child{min-width:0;display:flex;flex-direction:column;gap:4px}.edit-order-line b{overflow:hidden;text-overflow:ellipsis}.edit-order-line small{color:#999;font-size:11px}.edit-order-line.locked{opacity:.58}.edit-order-line .qty{display:flex;align-items:center;gap:10px;flex:none}.edit-order-line .qty button{width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,122,0,.35);background:rgba(255,122,0,.08);color:#ff8a1f;display:grid;place-items:center}.order-edit-modal>.secondary-btn{width:100%;margin-top:14px}
 /* Реальное меню: компактные переключатели размеров и подкатегорий */
 .choice-row button{min-height:42px;font-size:12px;font-weight:800}
+
+.menu-search{display:flex;align-items:center;gap:9px;margin:10px 0 14px;padding:0 12px;height:46px;background:rgba(18,21,20,.92);border:1px solid #2b302e;border-radius:13px;color:#9b9f9c;box-sizing:border-box}.menu-search span{font-size:23px;line-height:1}.menu-search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#f1f1ed;font:inherit}.menu-search input::placeholder{color:#777d79}.menu-search button{width:26px;height:26px;border:0;background:transparent;color:#b9bcb9;font-size:24px;line-height:1;padding:0}.search-results{margin-top:0}
+
+/* v79: small UI spacing refinements */
+.table-order .row > div > small{display:inline-block;margin-left:8px}
+.order-paid-label{display:inline-flex;align-items:center;gap:5px}
+.shift-panel .admin-form > .orange-btn{margin-top:10px}
+
+/* v80: dedicated bar work surface */
+.bar-section{margin-bottom:18px}
+.bar-card{border-color:#5b3a1f;box-shadow:inset 0 0 0 1px rgba(214,126,40,.08)}
+.bar-card .table-name{letter-spacing:.02em}
+
+/* v80: dedicated bar work surface */
+.bar-section{margin-bottom:18px}
+.bar-card{border-color:#5b3a1f;box-shadow:inset 0 0 0 1px rgba(214,126,40,.08)}
+
+/* v81: polished dedicated bar workspace */
+.bar-section{margin-bottom:20px}
+.bar-section .section-title span{font-size:9px;letter-spacing:.12em;color:#8c5d31}
+.bar-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.bar-work-card{position:relative;min-height:126px;padding:13px 14px;border-radius:14px;box-sizing:border-box;overflow:hidden;cursor:pointer;background:linear-gradient(145deg,#17130f 0%,#0d100f 62%,#0a0d0d 100%);border:1px solid #6a4525;box-shadow:0 8px 22px rgba(0,0,0,.2),inset 0 0 0 1px rgba(255,146,55,.07)}
+.bar-work-card:before{content:"";position:absolute;inset:auto -30px -55px auto;width:170px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(255,126,26,.13),transparent 68%);pointer-events:none}
+.bar-work-card.busy{border-color:#a56520;background:linear-gradient(145deg,#21170e 0%,#11110f 64%,#0b0e0e 100%)}
+.bar-card-top{position:relative;display:flex;align-items:center;gap:10px;min-width:0}
+.bar-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:rgba(255,126,26,.1);border:1px solid rgba(255,139,36,.22);font-size:20px;flex:none}
+.bar-card-kicker{font-size:8px;font-weight:800;letter-spacing:.16em;color:#8f8b85;margin-bottom:3px}
+.bar-card-title{font-size:17px;font-weight:900;line-height:1.05;color:#f0eee8}
+.bar-live{margin-left:auto;display:flex;align-items:center;gap:5px;padding:6px 8px;border-radius:9px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);font-size:9px;font-weight:800;color:#7ea984;white-space:nowrap}
+.bar-live.busy{color:#e49a4b;border-color:rgba(255,139,36,.18);background:rgba(255,126,26,.07)}
+.bar-card-meta{position:relative;margin-top:10px;font-size:10px;color:#777c78}
+.bar-card-total{position:relative;display:flex;align-items:end;gap:9px;margin-top:8px}
+.bar-card-total small{font-size:8px;color:#777;font-weight:800;letter-spacing:.08em}
+.bar-card-total strong{font-size:18px;line-height:1;color:#ff9a22}
+.bar-card-total span{font-size:9px;color:#777;margin-bottom:1px}
+.bar-card-progress{display:none}
+.bar-card-actions{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
+.bar-add-btn,.bar-close-btn{min-height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;font-weight:900;cursor:pointer}
+.bar-add-btn{border:1px solid #74460c;background:#21170c;color:#ff9a22}
+.bar-close-btn{border:1px solid rgba(255,122,0,.4);background:rgba(255,122,0,.08);color:#ff9a22}
+.bar-work-card.free .bar-card-total,.bar-work-card.free .bar-card-actions{display:none}
+@media(max-width:430px){.bar-work-card{min-height:118px;padding:12px}.bar-card-title{font-size:15px}.bar-live{padding:5px 7px;font-size:8px}.bar-card-meta{margin-top:9px}.bar-card-actions{margin-top:10px}}
+
+
+/* Bar: independent open checks */
+.bar-detail-modal{max-height:calc(100dvh - 32px);overflow:hidden}
+.bar-check-list{display:grid;gap:10px;overflow:auto;padding:2px 2px 4px;min-height:0}
+.bar-check-card{border:1px solid #262b29;background:rgba(15,18,17,.92);border-radius:14px;padding:13px}
+.bar-check-card .row{align-items:flex-start;gap:12px}
+.bar-check-card .row small{display:block;margin-top:4px;color:#858c89}
+.bar-check-items{display:grid;gap:6px;margin:12px 0;padding-top:10px;border-top:1px solid #242826}
+.bar-check-items>div{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.bar-check-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.bar-check-footer .orange-small{display:inline-flex;align-items:center;gap:6px}
+@media(max-width:640px){.bar-detail-modal{width:calc(100vw - 20px);max-height:calc(100dvh - 20px)}.bar-check-list{max-height:58dvh}.bar-check-card{padding:12px}.bar-check-footer .orange-small{min-height:42px;padding:0 13px}}
+
+/* v83: payment confirmation spacing */
+.check-modal > .orange-btn { margin-top: 14px; }
+
+/* v84: bar card status outline */
+.bar-work-card.free{border-color:rgba(76,190,105,.58);box-shadow:0 0 0 1px rgba(76,190,105,.08),0 0 18px rgba(76,190,105,.07)}
+.bar-work-card.busy{border-color:rgba(255,139,36,.58);box-shadow:0 0 0 1px rgba(255,139,36,.08),0 0 18px rgba(255,139,36,.06)}
+.bar-work-card.free .bar-live{color:#70b67b;border-color:rgba(76,190,105,.18);background:rgba(76,190,105,.06)}
