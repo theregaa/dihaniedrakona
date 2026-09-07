@@ -142,14 +142,16 @@ create table public.cash_register_receipts (
   order_ids bigint[] not null default '{}',
   guests integer not null default 0 check (guests >= 0),
   total numeric(10,2) not null check (total >= 0),
-  payment_method text not null check (payment_method in ('cash','card','mixed')),
+  discount_percent numeric(5,2) not null default 0 check (discount_percent >= 0 and discount_percent <= 100),
+  payment_method text not null check (payment_method in ('cash','card','mixed','transfer')),
   cash_amount numeric(10,2) not null default 0 check (cash_amount >= 0),
   card_amount numeric(10,2) not null default 0 check (card_amount >= 0),
+  transfer_amount numeric(10,2) not null default 0 check (transfer_amount >= 0),
   cash_received numeric(10,2) not null default 0 check (cash_received >= 0),
   change_amount numeric(10,2) not null default 0 check (change_amount >= 0),
   closed_at timestamptz not null default now(),
   created_at timestamptz not null default now(),
-  constraint receipt_payment_sum check (cash_amount + card_amount = total),
+  constraint receipt_payment_sum check (cash_amount + card_amount + transfer_amount = total),
   constraint receipt_cash_change check (cash_received >= cash_amount),
   constraint receipt_change_value check (change_amount = cash_received - cash_amount)
 );
@@ -212,6 +214,16 @@ $$;
 revoke all on function public.is_admin() from public;
 grant execute on function public.is_admin() to authenticated;
 
+
+-- Настройки приложения.
+create table if not exists public.app_settings (
+  key text primary key,
+  value text not null,
+  updated_at timestamptz not null default now()
+);
+insert into public.app_settings(key,value) values ('rounding_step','100')
+on conflict (key) do nothing;
+
 -- ============================================================
 -- 11. RLS
 -- ============================================================
@@ -225,6 +237,7 @@ alter table public.order_items enable row level security;
 alter table public.cash_register_receipts enable row level security;
 alter table public.audit_logs enable row level security;
 alter table public.push_subscriptions enable row level security;
+alter table public.app_settings enable row level security;
 
 -- Сотрудники: читать могут активные авторизованные сотрудники.
 create policy "authenticated staff can read profiles"
@@ -232,6 +245,19 @@ on public.staff_profiles for select to authenticated
 using (exists (select 1 from public.staff_profiles s where s.id=auth.uid() and s.active=true));
 
 -- Столы.
+
+create policy "authenticated staff can read app settings"
+on public.app_settings for select to authenticated
+using (exists (select 1 from public.staff_profiles s where s.id=auth.uid() and s.active=true));
+
+create policy "admins can insert app settings"
+on public.app_settings for insert to authenticated
+with check (public.is_admin());
+
+create policy "admins can update app settings"
+on public.app_settings for update to authenticated
+using (public.is_admin()) with check (public.is_admin());
+
 create policy "authenticated staff can read tables"
 on public.restaurant_tables for select to authenticated
 using (exists (select 1 from public.staff_profiles s where s.id=auth.uid() and s.active=true));
