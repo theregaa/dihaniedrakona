@@ -303,3 +303,5 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 
 .hookah-addons { flex-wrap: wrap; }
 .hookah-addons button { flex: 1 1 46%; min-width: 145px; }
+
+.shift-admin-btn{margin-top:10px;width:100%;justify-content:center;opacity:.9}
