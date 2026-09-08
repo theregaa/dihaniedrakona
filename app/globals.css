@@ -283,7 +283,9 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .bar-check-items{display:grid;gap:6px;margin:12px 0;padding-top:10px;border-top:1px solid #242826}
 .bar-check-items>div{display:flex;justify-content:space-between;gap:12px;font-size:14px}
 .bar-check-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
-.bar-check-footer .orange-small{display:inline-flex;align-items:center;gap:6px}
+.bar-check-footer-left,.bar-check-footer-right{display:flex;align-items:center;gap:8px}
+.bar-check-footer .mini-btn,.bar-check-footer .orange-small{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.bar-check-footer .orange-small{margin-left:auto}
 @media(max-width:640px){.bar-detail-modal{width:calc(100vw - 20px);max-height:calc(100dvh - 20px)}.bar-check-list{max-height:58dvh}.bar-check-card{padding:12px}.bar-check-footer .orange-small{min-height:42px;padding:0 13px}}
 
 /* v83: payment confirmation spacing */
@@ -298,3 +300,6 @@ html,body,#__next{max-width:100%;overflow-x:hidden}.app-shell{width:100%;overflo
 .readiness-item{align-items:center}.item-ready-toggle{flex:1;min-width:0;display:flex;align-items:center;gap:10px;border:0;background:transparent;color:inherit;text-align:left;padding:0;cursor:pointer}.item-ready-toggle:disabled{cursor:default}.ready-check{width:25px;height:25px;flex:0 0 25px;border-radius:8px;border:1px solid #4b4b4b;background:#111;display:grid;place-items:center;font-weight:900;color:#0d160f}.item-ready-toggle.ready .ready-check{border-color:#55c879;background:#68d486}.ready-copy{display:grid;gap:3px;min-width:0}.ready-copy b{overflow:hidden;text-overflow:ellipsis}.readiness-item.is-ready{background:rgba(104,212,134,.035)}.readiness-item.is-ready .ready-copy>small:last-child{color:#68d486}.readiness-item.is-pending .ready-copy>small:last-child{color:#aaa}.order-footer .orange-small{white-space:nowrap}@media(max-width:430px){.order-footer{align-items:flex-end}.order-footer .orange-small{padding:10px 11px;font-size:10px}.ready-check{width:27px;height:27px;flex-basis:27px}}
 
 .login-remember{margin:10px 0 2px;justify-content:flex-start;font-size:13px;color:#aaa;gap:8px;cursor:pointer}.login-remember input{accent-color:#ff7a00;width:16px;height:16px}
+
+.hookah-addons { flex-wrap: wrap; }
+.hookah-addons button { flex: 1 1 46%; min-width: 145px; }
