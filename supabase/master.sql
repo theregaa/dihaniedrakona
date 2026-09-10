@@ -223,6 +223,8 @@ create table if not exists public.app_settings (
 );
 insert into public.app_settings(key,value) values ('rounding_step','100')
 on conflict (key) do nothing;
+insert into public.app_settings(key,value) values ('audit_retention_hours','48')
+on conflict (key) do nothing;
 
 -- ============================================================
 -- 11. RLS
