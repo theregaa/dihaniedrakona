@@ -329,30 +329,25 @@ with check (exists (select 1 from public.staff_profiles s where s.id=auth.uid() 
 create policy "all active staff can update order items"
 on public.order_items for update to authenticated
 using (
-  public.is_admin()
-  or exists (
+  exists (
     select 1 from public.staff_profiles sp
-    where sp.id=auth.uid() and sp.active=true and sp.role in ('waiter','hookah')
+    where sp.id=auth.uid() and sp.active=true
   )
 )
 with check (
-  public.is_admin()
-  or exists (
+  exists (
     select 1 from public.staff_profiles sp
-    where sp.id=auth.uid() and sp.active=true and sp.role in ('waiter','hookah')
+    where sp.id=auth.uid() and sp.active=true
   )
 );
 
--- Удаление новой позиции официантом; администратор может удалить любую.
-create policy "waiter and admin can delete new order items"
+-- Любой активный сотрудник может удалить позицию из открытого заказа.
+create policy "active staff can delete order items"
 on public.order_items for delete to authenticated
 using (
-  public.is_admin()
-  or exists (
+  exists (
     select 1 from public.staff_profiles sp
-    where sp.id=auth.uid() and sp.active=true and sp.role='waiter'
-      and public.order_items.department='waiter'
-      and public.order_items.item_status='new'
+    where sp.id=auth.uid() and sp.active=true
   )
 );
 
