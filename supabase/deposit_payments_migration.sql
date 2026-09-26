@@ -21,15 +21,16 @@ create table if not exists public.order_item_payments (
   shift_id bigint references public.cash_register_shifts(id),
   staff_id uuid references public.staff_profiles(id),
   amount numeric(10,2) not null check (amount > 0),
-  payment_method text not null check (payment_method in ('cash','card','mixed','transfer')),
+  payment_method text not null check (payment_method in ('cash','card','mixed','transfer','deposit')),
   cash_amount numeric(10,2) not null default 0 check (cash_amount >= 0),
   card_amount numeric(10,2) not null default 0 check (card_amount >= 0),
   transfer_amount numeric(10,2) not null default 0 check (transfer_amount >= 0),
+  deposit_amount numeric(10,2) not null default 0 check (deposit_amount >= 0),
   cash_received numeric(10,2) not null default 0 check (cash_received >= 0),
   change_amount numeric(10,2) not null default 0 check (change_amount >= 0),
   receipt_id bigint references public.cash_register_receipts(id) on delete set null,
   created_at timestamptz not null default now(),
-  constraint item_payment_sum check (cash_amount + card_amount + transfer_amount = amount),
+  constraint item_payment_sum check (cash_amount + card_amount + transfer_amount + deposit_amount = amount),
   constraint item_payment_cash_change check (cash_received >= cash_amount),
   constraint item_payment_change_value check (change_amount = cash_received - cash_amount)
 );
@@ -49,3 +50,14 @@ drop policy if exists "waiter or admin can create item payments" on public.order
 create policy "waiter or admin can create item payments"
 on public.order_item_payments for insert to authenticated
 with check (exists (select 1 from public.staff_profiles s where s.id=auth.uid() and s.active=true and s.role in ('waiter','admin')));
+
+-- Обновление для отдельной оплаты позиции с использованием остатка депозита.
+alter table public.order_item_payments
+  add column if not exists deposit_amount numeric(10,2) not null default 0 check (deposit_amount >= 0);
+
+alter table public.order_item_payments drop constraint if exists item_payment_sum;
+alter table public.order_item_payments
+  add constraint item_payment_sum check (cash_amount + card_amount + transfer_amount + deposit_amount = amount);
+
+alter table public.order_item_payments drop constraint if exists order_item_payments_payment_method_check;
+alter table public.order_item_payments add constraint order_item_payments_payment_method_check check (payment_method in ('cash','card','mixed','transfer','deposit'));
